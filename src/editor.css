@@ -1,0 +1,224 @@
+/* Editor theme. Shared colors and fonts come from theme.css. */
+:root {
+  --editor-muted: #626d63;
+  --editor-border: #d8dcd2;
+  --editor-dialog-border: #dbdfd5;
+  --editor-control-border: #c9cec3;
+  --editor-control-surface: #fffefa;
+  --editor-backdrop: rgb(26 37 29 / 30%);
+  --editor-quiet-action: #526958;
+  --editor-remove-action: #995347;
+  --editor-primary-action: #3e5a47;
+  --editor-on-primary: white;
+  --editor-error-text: #9c4037;
+  --editor-invalid-border: #b24d43;
+  --editor-invalid-background: #fff1ee;
+}
+
+/* Editor entry point */
+.edit-trigger {
+  position: fixed;
+  right: 22px;
+  bottom: 20px;
+  padding: 9px 13px;
+  background: var(--color-page);
+  color: var(--editor-muted);
+  border: 1px solid var(--editor-border);
+  border-radius: 6px;
+  font-size: 0.75rem;
+}
+
+/* Dialog and header */
+.editor {
+  width: min(540px, calc(100% - 28px));
+  max-height: calc(100svh - 40px);
+  padding: 28px;
+  border: 1px solid var(--editor-dialog-border);
+  border-radius: 12px;
+  background: var(--color-page);
+  color: var(--color-text);
+}
+
+.editor[open],
+.editor[open]::backdrop {
+  animation: fade-in var(--duration-fade) ease;
+}
+
+.editor::backdrop {
+  background: var(--editor-backdrop);
+}
+
+.editor h2 {
+  margin: 0;
+  font: 400 1.8rem var(--font-heading);
+}
+
+.editor-note {
+  font-size: 0.8rem;
+  color: var(--editor-muted);
+  line-height: 1.6;
+  margin: 0 0 8px 0;
+}
+
+/* Event fields */
+.editor-fields {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.event-fields {
+  margin: 0 0 20px;
+  padding: 16px;
+  border: 1px solid var(--editor-border);
+  border-radius: 6px;
+  min-width: 0;
+}
+
+.event-fields legend {
+  padding: 0 6px;
+  font-size: 0.75rem;
+  color: var(--editor-muted);
+}
+
+.editor label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 0.8rem;
+  margin-bottom: 14px;
+  min-width: 0;
+}
+
+.editor input,
+.editor select {
+  padding: 10px;
+  min-width: 0;
+  width: 100%;
+  border: 1px solid var(--editor-control-border);
+  border-radius: 4px;
+  background: var(--editor-control-surface);
+  color: var(--color-text);
+}
+
+.editor input[aria-invalid="true"] {
+  border-color: var(--editor-invalid-border);
+  background: var(--editor-invalid-background);
+}
+
+.date-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.time-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  margin-bottom: 14px;
+}
+
+.editor .time-field label {
+  margin: 0;
+}
+
+/* Optional time hint */
+.tooltip-anchor {
+  position: relative;
+  cursor: help;
+  text-decoration: underline dashed;
+  text-underline-offset: 3px;
+}
+
+.editor-tooltip {
+  position: absolute;
+  z-index: 1;
+  inset-inline-start: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  padding: 6px 9px;
+  border-radius: 4px;
+  background: var(--color-text);
+  color: var(--editor-control-surface);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--duration-fade) ease,
+    visibility 0s var(--duration-fade);
+}
+
+.tooltip-anchor:hover .editor-tooltip,
+.tooltip-anchor:focus .editor-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* Form actions and feedback */
+.event-field-footer,
+.editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+.quiet-button {
+  border: 0;
+  padding: 6px 0;
+  background: transparent;
+  color: var(--editor-quiet-action);
+  font-size: 0.8rem;
+}
+
+.remove-button {
+  color: var(--editor-remove-action);
+}
+
+.add-button {
+  padding: 10px 14px;
+  background: transparent;
+  border: 1px solid var(--editor-control-border);
+  border-radius: 5px;
+  color: var(--editor-primary-action);
+}
+
+.editor-actions {
+  padding-top: 24px;
+}
+
+.save-button {
+  padding: 11px 18px;
+  background: var(--editor-primary-action);
+  color: var(--editor-on-primary);
+  border: 0;
+  border-radius: 5px;
+}
+
+.editor-error {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--editor-error-text);
+  animation: fade-in var(--duration-fade) ease;
+}
+
+.editor button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+@media (max-width: 400px) {
+  .editor {
+    padding: 20px;
+  }
+
+
+  .date-fields {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

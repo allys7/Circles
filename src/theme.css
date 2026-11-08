@@ -1,0 +1,10 @@
+:root {
+  --font-body: 'Segoe UI', Arial, sans-serif;
+  --font-heading: Georgia, 'Times New Roman', serif;
+  --color-page: #f8f7f3;
+  --color-text: #2e3a34;
+  --color-muted: #62695f;
+  --color-caption: #656b61;
+  --color-divider: #dedfd5;
+  --color-focus: #57745f;
+}
